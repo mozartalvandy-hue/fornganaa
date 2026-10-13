@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>for cinta ❤️</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts: Romantic & Modern Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.google.com/specimen/Libre+Caslon+Condensed?preview.script=Latn&family=Poppins:wght@300;400;600;700&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        poppins: ['"Poppins"', 'sans-serif'],
+                        pacifico: ['"Pacifico"', 'cursive'],
+                        dancing: ['"Dancing Script"', 'cursive'],
+                        quicksand: ['"Quicksand"', 'sans-serif'],
+                        caveat: ['"Caveat"', 'cursive'],
+                    },
+                    animation: {
+                        'float': 'float 3.5s ease-in-out infinite',
+                        'pulse-glow': 'pulseGlow 1.5s infinite alternate',
+                        'bounce-soft': 'bounceSoft 2s infinite',
+                        'heartbeat': 'heartbeat 1.2s infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
+                            '50%': { transform: 'translateY(-12px) rotate(1deg)' },
+                        },
+                        pulseGlow: {
+                            '0%': { boxShadow: '0 0 15px rgba(244, 63, 94, 0.5), 0 0 30px rgba(236, 72, 153, 0.3)' },
+                            '100%': { boxShadow: '0 0 35px rgba(244, 63, 94, 0.9), 0 0 60px rgba(251, 113, 133, 0.8)' },
+                        },
+                        bounceSoft: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-8px)' },
+                        },
+                        heartbeat: {
+                            '0%, 100%': { transform: 'scale(1)' },
+                            '14%': { transform: 'scale(1.15)' },
+                             me28: { transform: 'scale(1)' },
+                            '42%': { transform: 'scale(1.15)' },
+                            '70%': { transform: 'scale(1)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        * {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #1e0313 0%, #3d0827 35%, #580c35 70%, #200214 100%);
+            min-height: 100vh;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* Glassmorphism Card Style */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.22);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+        }
+
+        /* Fullscreen Yes Button Transformation Overlay */
+        .fullscreen-yes-mode {
+            position: fixed !important;
+            inset: 0 !important;
+            width: 100vw !important;
+            height: 100vh !important;
+            z-index: 9999 !important;
+            border-radius: 0 !important;
+            margin: 0 !important;
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            justify-content: center !important;
+            background: linear-gradient(135deg, #f43f5e, #ec4899, #e11d48) !important;
+            box-shadow: 0 0 100px rgba(244, 63, 94, 1) !important;
+            animation: pulseGlow 1s infinite alternate !important;
+            cursor: pointer !important;
+        }
+
+        /* Text Neon Glow Effects */
+        .text-glow {
+            text-shadow: 0 0 15px rgba(251, 113, 133, 0.8), 0 0 30px rgba(244, 63, 94, 0.6);
+        }
+
+        .text-glow-gold {
+            text-shadow: 0 0 12px rgba(253, 224, 71, 0.8), 0 0 25px rgba(245, 158, 11, 0.6);
+        }
+
+        /* Canvas Overlay Layers */
+        #bgCanvas, #fireworksCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+        #bgCanvas { z-index: 1; }
+        #fireworksCanvas { z-index: 50; }
+
+        /* Smooth Button Transformations */
+        #yesBtn {
+            transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), 
+                        padding 0.35s ease, 
+                        font-size 0.35s ease, 
+                        background 0.3s ease;
+            transform-origin: center center;
+        }
+
+        #noBtn {
+            transition: all 0.3s ease;
+        }
+    </style>
+</head>
+<body class="relative min-h-screen flex items-center justify-center p-4 selection:bg-rose-500 selection:text-white">
+
+<!-- HALAMAN PEMBUKA -->
+<section id="introPage"
+    class="fixed inset-0 z-[10000] flex flex-col items-center justify-center text-center p-6 bg-gradient-to-br from-[#1e0313] via-[#580c35] to-[#200214]">
+
+    <div class="text-6xl mb-6">💌</div>
+
+
+    <button onclick="openLovePage()"
+        class="px-8 py-4 rounded-full bg-gradient-to-r from-rose-500 to-pink-500 text-white font-bold text-lg shadow-xl">
+        Buka inii
+    </button>
+</section>
+
+<!-- LAGU -->
+<audio id="bgMusic" loop preload="auto">
+    <source src="love.mp3" type="audio/mpeg">
+</audio>
+
+<!-- Background Canvas for Floating Hearts & Sparkles Particles -->
+<canvas id="bgCanvas"></canvas>
+
+
+<!-- LAGU -->
+<audio id="bgMusic" loop preload="auto">
+    <source src="love.mp3" type="audio/mpeg">
+</audio>
+
+<!-- Background Canvas for Floating Hearts & Sparkles Particles -->
+<canvas id="bgCanvas"></canvas>
+    <!-- Background Canvas for Floating Hearts & Sparkles Particles -->
+    <canvas id="bgCanvas"></canvas>
+
+    <!-- Foreground Canvas for Celebration Fireworks / Confetti -->
+    <canvas id="fireworksCanvas"></canvas>
+
+
+
+    <!-- MAIN CONTAINER CARD -->
+    <main id="mainCard" class="hidden relative z-10 w-full max-w-lg mx-auto my-auto">
+        <div class="glass-card p-6 sm:p-10 rounded-3xl text-center space-y-6 sm:space-y-8 animate-float relative overflow-hidden">
+            
+            <!-- Cute Romantic Sticker / GIF Container -->
+            <div class="relative inline-block">
+                <div id="gifBox" class="w-28 h-28 sm:w-36 sm:h-36 mx-auto rounded-2xl p-1 bg-gradient-to-tr from-rose-400 via-pink-400 to-amber-300 shadow-2xl relative overflow-hidden group">
+                    <img id="cuteSticker" 
+                         src="cinta.jpg" 
+                         alt="Cute Animated Sticker" 
+                         onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=300&auto=format&fit=crop&q=80';"
+                         class="w-full h-full object-cover rounded-xl transition-transform duration-500 group-hover:scale-110">
+                </div>
+                <div class="absolute -bottom-2 -right-2 bg-gradient-to-r from-amber-400 to-rose-400 text-slate-950 font-bold text-[11px] px-3 py-0.5 rounded-full shadow-md animate-bounce">
+                    ✨ My Fav Person
+                </div>
+            </div>
+
+            <!-- Question Title & Badge -->
+            <div class="space-y-3">
+                <span id="badgeText" class="inline-block px-4 py-1.5 rounded-full bg-white/10 text-xs sm:text-sm font-medium text-pink-200 border border-white/20 tracking-wide">
+                    sorry alay
+                </span>
+                
+                <h1 id="questionTitle" class="text-xl sm:text-2xl md:text-3xl font-dancing font-bold ...">
+                    jujurr kt senangg skalii pas pertama tau kalo ngana ternyata ada perasaan yang sama deng kt.
+                    <br>
+                    pas ngn bilang dpe awal muncul perasaan pas di momen praktek biologi klas 11, jujurr itu momen nda brenti kt cirita pa il dng apang sampe dong pastiu dengarr hehe.
+                    <br>
+                    kita ingin menjalani hubungan yang lebih dekat deng ngnn yang lebih dari sekedar tamangg, cuma kt salalu kalah deng tpe pikiran sandiri karna ja ttapikir orang" pe pandangan pa kt bgimana karna banyak orang tau ngn sebelumnya deng tpe tamangg, sorry selama ini kt raguu mo tanya pa ngn karna tpe pikiran yang konyol ituu, mar skarang kt so menangg lawan tpe pikiran ituu (anjay toohh).
+
+                </h1>
+            </div>
+
+            <p id="subHint" class="text-xs sm:text-sm text-pink-200/80 italic font-light">
+                 jadi ngn suka nda mo jalani hubungan yang pasti deng kitaa?
+            </p>
+
+            <!-- Interactive Action Buttons Wrapper -->
+            <div id="btnArea" class="relative w-full min-h-[120px] flex flex-wrap items-center justify-center gap-4 p-3 rounded-2xl bg-black/15 border border-white/10 overflow-visible">
+                
+                <!-- YES BUTTON (Grows on No clicks -> Full Screen) -->
+                <button id="yesBtn" onclick="handleYesClick()" class="z-20 px-8 py-4 bg-gradient-to-r from-rose-500 via-pink-500 to-amber-500 hover:from-rose-600 hover:to-amber-600 text-white font-bold text-lg sm:text-xl rounded-full shadow-2xl animate-pulse-glow flex items-center justify-center space-x-2 cursor-pointer active:scale-95">
+                    <i class="fa-solid fa-heart text-xl animate-beat"></i>
+                    <span id="yesBtnText">Sukaa ❤️</span>
+                </button>
+
+                <!-- NO BUTTON (Grows smaller / changes text / triggers Yes growth) -->
+                <button id="noBtn" onclick="handleNoClick()" class="z-20 px-6 py-3.5 bg-slate-900/80 hover:bg-slate-800 text-pink-300 font-semibold text-sm sm:text-base rounded-full border border-pink-500/40 shadow-xl cursor-pointer flex items-center justify-center space-x-2">
+                    <i class="fa-solid fa-heart-crack text-rose-400"></i>
+                    <span id="noBtnText">nda noh skip</span>
+                </button>
+
+            </div>
+
+            <!-- Footer Note -->
+            <div class="pt-1 text-[11px] sm:text-xs text-pink-300/60 font-light">
+                Dibuat dengan sepenuh hati khusus untuk kamu ✨
+            </div>
+
+        </div>
+    </main>
+
+    <!-- CELEBRATION MODAL (Revealed after clicking "Iya") -->
+    <div id="celebrationModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-lg hidden transition-opacity duration-700 opacity-0 overflow-y-auto">
+        <div class="glass-card w-full max-w-lg p-6 sm:p-10 rounded-3xl text-center space-y-6 my-auto shadow-2xl transform scale-90 transition-transform duration-700 border border-pink-400/30">
+            
+            <!-- Happy Celebration GIF -->
+            <div class="w-32 h-32 sm:w-40 sm:h-40 mx-auto rounded-3xl p-1 bg-gradient-to-tr from-rose-400 via-amber-300 to-pink-500 shadow-2xl overflow-hidden animate-bounce-soft">
+                <img id="celebrationGif" 
+                     src="stiker.jpg" 
+                     alt="Celebration Love GIF" 
+                     onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=300&auto=format&fit=crop&q=80';"
+                     class="w-full h-full object-cover rounded-2xl">
+            </div>
+
+            <!-- Happy Celebration Title -->
+            <div class="space-y-2">
+                <h2 class="text-3xl sm:text-4xl md:text-5xl font-dancing font-bold text-transparent bg-clip-text bg-gradient-to-r from-rose-300 via-pink-200 to-amber-200 text-glow">
+                    YEEAYYY! Makasee lovvv!
+                </h2>
+                <p class="text-sm sm:text-base text-pink-100/90 font-light leading-relaxed pt-2">
+                    Sorry alay (wajar orang paling alay di wawali) 😎
+                    <br>
+                    sukaa ndaa?
+                </p>
+            </div>
+
+           
+
+            <!-- WhatsApp Action Button -->
+            <div class="pt-2 space-y-3">
+                <a id="waButton" href="#" target="_blank" class="w-full py-4 px-6 bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white font-bold rounded-2xl shadow-xl flex items-center justify-center space-x-3 transition-all transform hover:scale-105 active:scale-95 text-base sm:text-lg">
+                    <i class="fa-brands fa-whatsapp text-2xl"></i>
+                    <span>Kirim Pesan Ke WhatsApp 💬</span>
+                </a>
+                
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        // ==========================================
+        // 1. FLOATING PARTICLES CANVAS ENGINE
+        // ==========================================
+        const bgCanvas = document.getElementById('bgCanvas');
+        const bgCtx = bgCanvas.getContext('2d');
+        let bgParticles = [];
+
+        function resizeBgCanvas() {
+            bgCanvas.width = window.innerWidth;
+            bgCanvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeBgCanvas);
+        resizeBgCanvas();
+
+        class Particle {
+            constructor() {
+                this.reset();
+            }
+            reset() {
+                this.x = Math.random() * bgCanvas.width;
+                this.y = bgCanvas.height + 20;
+                this.size = Math.random() * 16 + 8;
+                this.speedY = Math.random() * 1.6 + 0.6;
+                this.speedX = (Math.random() - 0.5) * 0.8;
+                this.opacity = Math.random() * 0.7 + 0.3;
+                this.color = ['#f43f5e', '#ec4899', '#fb7185', '#fda4af', '#fcd34d'][Math.floor(Math.random() * 5)];
+                this.rotation = Math.random() * Math.PI * 2;
+                this.rotSpeed = (Math.random() - 0.5) * 0.03;
+                this.isStar = Math.random() > 0.6;
+            }
+            update() {
+                this.y -= this.speedY;
+                this.x += Math.sin(this.y * 0.01) * 0.6 + this.speedX;
+                this.rotation += this.rotSpeed;
+                if (this.y < -30) this.reset();
+            }
+            draw() {
+                bgCtx.save();
+                bgCtx.translate(this.x, this.y);
+                bgCtx.rotate(this.rotation);
+                bgCtx.globalAlpha = this.opacity;
+                bgCtx.fillStyle = this.color;
+
+                if (this.isStar) {
+                    // Draw Star
+                    bgCtx.beginPath();
+                    for (let i = 0; i < 5; i++) {
+                        bgCtx.lineTo(Math.cos((18 + i * 72) * Math.PI / 180) * (this.size / 2),
+                                     -Math.sin((18 + i * 72) * Math.PI / 180) * (this.size / 2));
+                        bgCtx.lineTo(Math.cos((54 + i * 72) * Math.PI / 180) * (this.size / 4),
+                                     -Math.sin((54 + i * 72) * Math.PI / 180) * (this.size / 4));
+                    }
+                    bgCtx.closePath();
+                    bgCtx.fill();
+                } else {
+                    // Draw Heart
+                    bgCtx.beginPath();
+                    let topCurveHeight = this.size * 0.3;
+                    bgCtx.moveTo(0, topCurveHeight);
+                    bgCtx.bezierCurveTo(0, 0, -this.size / 2, 0, -this.size / 2, topCurveHeight);
+                    bgCtx.bezierCurveTo(-this.size / 2, (this.size + topCurveHeight) / 2, 0, this.size, 0, this.size);
+                    bgCtx.bezierCurveTo(0, this.size, this.size / 2, (this.size + topCurveHeight) / 2, this.size / 2, topCurveHeight);
+                    bgCtx.bezierCurveTo(this.size / 2, 0, 0, 0, 0, topCurveHeight);
+                    bgCtx.closePath();
+                    bgCtx.fill();
+                }
+
+                bgCtx.restore();
+            }
+        }
+
+        for (let i = 0; i < 45; i++) {
+            bgParticles.push(new Particle());
+        }
+
+        function animateBgCanvas() {
+            bgCtx.clearRect(0, 0, bgCanvas.width, bgCanvas.height);
+            bgParticles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animateBgCanvas);
+        }
+        animateBgCanvas();
+
+        // ==========================================
+        // 2. WEB AUDIO SYNTHESIZER (MELODY & SOUNDS)
+        // ==========================================
+        let audioCtx = null;
+        let isMusicPlaying = false;
+        let melodyInterval = null;
+
+        function initAudio() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+        }
+
+        function playPopSound(freq = 400) {
+            initAudio();
+            if (!audioCtx) return;
+            try {
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(freq * 1.8, audioCtx.currentTime + 0.08);
+
+                gain.gain.setValueAtTime(0.12, audioCtx.currentTime);
+                gain.gain.linearRampToValueAtTime(0.01, audioCtx.currentTime + 0.08);
+
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start();
+                osc.stop(audioCtx.currentTime + 0.08);
+            } catch(e){}
+        }
+
+        function playSadWhineSound() {
+            initAudio();
+            if (!audioCtx) return;
+            try {
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = 'triangle';
+                osc.frequency.setValueAtTime(320, audioCtx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(180, audioCtx.currentTime + 0.25);
+
+                gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
+                gain.gain.linearRampToValueAtTime(0.01, audioCtx.currentTime + 0.25);
+
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start();
+                osc.stop(audioCtx.currentTime + 0.25);
+            } catch(e){}
+        }
+
+        function playVictoryMelody() {
+            initAudio();
+            if (!audioCtx) return;
+
+            const notes = [
+                { f: 523.25, d: 0.15 }, // C5
+                { f: 659.25, d: 0.15 }, // E5
+                { f: 783.99, d: 0.15 }, // G5
+                { f: 987.77, d: 0.2 },  // B5
+                { f: 1046.50, d: 0.5 }  // C6
+            ];
+
+            let now = audioCtx.currentTime;
+            notes.forEach((note) => {
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+
+                osc.type = 'sine';
+                osc.frequency.value = note.f;
+
+                gain.gain.setValueAtTime(0.2, now);
+                gain.gain.exponentialRampToValueAtTime(0.001, now + note.d);
+
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+
+                osc.start(now);
+                osc.stop(now + note.d);
+
+                now += note.d + 0.04;
+            });
+        }
+
+        // Romantic Background Melody Loop Synthesizer
+        function toggleAudio() {
+            initAudio();
+            const musicIcon = document.getElementById('musicIcon');
+            const musicText = document.getElementById('musicText');
+
+            if (isMusicPlaying) {
+                clearInterval(melodyInterval);
+                isMusicPlaying = false;
+                musicIcon.className = "fa-solid fa-music text-pink-300";
+                musicText.innerText = "Musik Off";
+            } else {
+                isMusicPlaying = true;
+                musicIcon.className = "fa-solid fa-compact-disc fa-spin text-pink-400";
+                musicText.innerText = "Musik On 🎵";
+
+                const romanticNotes = [329.63, 392.00, 440.00, 493.88, 523.25, 440.00, 392.00, 329.63];
+                let noteIdx = 0;
+
+                melodyInterval = setInterval(() => {
+                    if (!isMusicPlaying || !audioCtx) return;
+                    try {
+                        const osc = audioCtx.createOscillator();
+                        const gain = audioCtx.createGain();
+                        osc.type = 'sine';
+                        osc.frequency.setValueAtTime(romanticNotes[noteIdx], audioCtx.currentTime);
+
+                        gain.gain.setValueAtTime(0.05, audioCtx.currentTime);
+                        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.45);
+
+                        osc.connect(gain);
+                        gain.connect(audioCtx.destination);
+                        osc.start();
+                        osc.stop(audioCtx.currentTime + 0.45);
+
+                        noteIdx = (noteIdx + 1) % romanticNotes.length;
+                    } catch(e){}
+                }, 500);
+            }
+        }
+
+        // ==========================================
+        // 3. INTERACTIVE BUTTON GROWTH & TEXT LOGIC
+        // ==========================================
+        let noCount = 0;
+
+        const noTexts = [
+            "butul dang ini?",
+            "butul skali? 💔",
+            "skali pe skalii?💔",
+            "otuh",
+            "berey",
+            "iyo joo💖",
+            "mar nda ada pilihan laeng hehe ❤️"
+        ];
+
+        const cuteSadGifs = [
+            "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3U4ZmRtZzAxeXdyZGgxOHUzZWJpdWFpMmIydW4zaTB3eGV5ZTVsdyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/G3va39UXI3A2VYUHOE/giphy.gif",
+            "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcDI5aXNybnIzMndsdGltdzFjcGdyNWh4NW1xeG1vaXl4eTlpeCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/BEob5066fh55K/giphy.gif",
+            "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcHJzbmxmbWNmdThjZDV2bzZnbXNzc3E0ZWV4YndreWNwdnNzcTN3byZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/OPU6wzx8JrHna/giphy.gif"
+        ];
+
+        function handleNoClick() {
+            noCount++;
+            playSadWhineSound();
+
+            const yesBtn = document.getElementById('yesBtn');
+            const yesBtnText = document.getElementById('yesBtnText');
+            const noBtnText = document.getElementById('noBtnText');
+            const badgeText = document.getElementById('badgeText');
+            const subHint = document.getElementById('subHint');
+            const cuteSticker = document.getElementById('cuteSticker');
+
+            // Update "Tidak" text based on click count
+            const textIdx = Math.min(noCount - 1, noTexts.length - 1);
+            noBtnText.innerText = noTexts[textIdx];
+
+            // Change cute sticker to sad ones as count increases
+            if (noCount <= cuteSadGifs.length) {
+                cuteSticker.src = cuteSadGifs[noCount - 1];
+            }
+
+            // Update badge & hint
+            badgeText.innerText = `Yahhh padahal aku udah berharap... 😭 (${noCount}x ditolak)`;
+            subHint.innerText = "Makin kamu pencet Tidak, tombol Iya bakal makin melotot! 😜";
+
+            // If clicks reach 5 or more -> Transform YES button into FULLSCREEN OVERLAY
+            if (noCount >= 5) {
+                yesBtn.classList.add('fullscreen-yes-mode');
+                yesBtnText.innerHTML = `
+                    <span class="text-4xl sm:text-6xl md:text-7xl font-dancing font-bold block mb-2 drop-shadow-lg">
+                        SUKAAA ❤️❤️❤️
+                    </span>
+                    <span class="text-sm sm:text-xl font-poppins font-normal text-pink-100 opacity-90 block">
+                        (yahh nyanda ada pilihan laeng nohh)
+                    </span>
+                `;
+            } else {
+                // Smoothly scale up "Iya" button
+                const scaleValue = 1 + (noCount * 0.45);
+                const paddingY = 1 + (noCount * 0.25);
+                const paddingX = 2 + (noCount * 0.5);
+                const fontSize = 1.125 + (noCount * 0.25);
+
+                yesBtn.style.transform = `scale(${scaleValue})`;
+                yesBtn.style.padding = `${paddingY}rem ${paddingX}rem`;
+                yesBtn.style.fontSize = `${fontSize}rem`;
+            }
+        }
+
+        // ==========================================
+        // 4. FIREWORKS CELEBRATION ENGINE
+        // ==========================================
+        const fwCanvas = document.getElementById('fireworksCanvas');
+        const fwCtx = fwCanvas.getContext('2d');
+        let fwParticles = [];
+
+        function resizeFwCanvas() {
+            fwCanvas.width = window.innerWidth;
+            fwCanvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeFwCanvas);
+        resizeFwCanvas();
+
+        class SparkParticle {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+                this.angle = Math.random() * Math.PI * 2;
+                this.speed = Math.random() * 10 + 2;
+                this.friction = 0.93;
+                this.gravity = 0.15;
+                this.hue = Math.random() * 60 + 320; // Pink / Red / Gold
+                this.alpha = 1;
+                this.decay = Math.random() * 0.02 + 0.015;
+                this.size = Math.random() * 6 + 2;
+            }
+            update() {
+                this.speed *= this.friction;
+                this.x += Math.cos(this.angle) * this.speed;
+                this.y += Math.sin(this.angle) * this.speed + this.gravity;
+                this.alpha -= this.decay;
+            }
+            draw() {
+                fwCtx.save();
+                fwCtx.globalAlpha = Math.max(0, this.alpha);
+                fwCtx.fillStyle = `hsl(${this.hue}, 100%, 65%)`;
+                fwCtx.beginPath();
+                fwCtx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                fwCtx.fill();
+                fwCtx.restore();
+            }
+        }
+
+        function triggerCelebrationFireworks() {
+            for (let i = 0; i < 8; i++) {
+                setTimeout(() => {
+                    let rx = Math.random() * (fwCanvas.width * 0.8) + (fwCanvas.width * 0.1);
+                    let ry = Math.random() * (fwCanvas.height * 0.5) + (fwCanvas.height * 0.1);
+                    for (let p = 0; p < 60; p++) {
+                        fwParticles.push(new SparkParticle(rx, ry));
+                    }
+                }, i * 220);
+            }
+        }
+
+        function animateFireworks() {
+            fwCtx.clearRect(0, 0, fwCanvas.width, fwCanvas.height);
+            for (let i = fwParticles.length - 1; i >= 0; i--) {
+                fwParticles[i].update();
+                fwParticles[i].draw();
+                if (fwParticles[i].alpha <= 0) {
+                    fwParticles.splice(i, 1);
+                }
+            }
+            requestAnimationFrame(animateFireworks);
+        }
+        animateFireworks();
+
+        // ==========================================
+        // 5. ACCEPTANCE / "IYA" ACTION HANDLER
+        // ==========================================
+        function handleYesClick() {
+            playPopSound(600);
+            triggerCelebrationFireworks();
+            playVictoryMelody();
+
+
+
+            // Set up pre-filled WhatsApp link
+            const phoneNumber = "6285754395968"; // Ganti dengan nomor WhatsApp kamu jika diperlukan
+            const messageText = encodeURIComponent("sukaa");
+            const waUrl = `https://wa.me/${phoneNumber}?text=${messageText}`;
+            document.getElementById('waButton').setAttribute('href', waUrl);
+
+            // Show Celebration Modal
+            const modal = document.getElementById('celebrationModal');
+            const modalCard = modal.querySelector('.glass-card');
+
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                modalCard.classList.remove('scale-90');
+            }, 50);
+        } function openLovePage() {
+    const bgMusic = document.getElementById("bgMusic");
+    const intro = document.getElementById("introPage");
+    const mainCard = document.getElementById("mainCard");
+
+    bgMusic.volume = 0.5;
+
+    bgMusic.play().catch(error => {
+        console.log("Lagu gagal diputar:", error);
+    });
+
+    intro.classList.add("hidden");
+    mainCard.classList.remove("hidden");
+}
+    </script>
+</body>
+</html>
